@@ -1,0 +1,44 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'></div>
+    <div class='col-md-8 offset-md-1'>
+      <h3>Books search for"<%= @content %>"</h3>
+      <table class="table">
+          <% if @model == "user" %>
+            <tr>
+              <th>image</th>
+              <th>name</th>
+            </tr>
+            </tr>
+            <% @datas.each do |datas| %>
+               <td><%= attachment_image_tag(datas, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+               <td>
+                  <%= link_to user_path(datas.id) do %>
+                   <%= datas.name %>
+                  <% end %>
+                </td>
+            <% end %>
+          </tr>
+          <% elsif @model == "book" %>
+           <tr>
+            <th>image</th>
+            <th>title</th>
+            <th>opinion</th>
+          </tr>
+            <% @datas.each do |datas| %>
+             <tr>
+              <td><%= attachment_image_tag(datas.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+              <td>
+                <%= link_to book_path(datas.id) do %>
+                  <%= datas.title %>
+                <% end %>
+              </td>
+              <td><%= datas.body %></td>
+             </tr>
+            <% end %>
+         <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
